@@ -1,0 +1,87 @@
+<div ng-controller="InputPenggunaCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="messages" class="alert alert-{{alertStatus}}" ng-show="messages">
+                <span ng-bind="messages"></span>
+                <i class="dismiss-messages pull-right glyphicon glyphicon-remove" ng-click="messages = ''"
+                   ng-show="messages"></i>
+            </div>
+            <img class="spinner" src="/img/ajax-loader.gif" ng-show="loading"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Input Data Pengguna Frekuensi Radio</h3>
+
+            <form name="inputForm" novalidate role="form">
+                <div class="form-group">
+                    <label for="client_id">ID Pengguna <span class="required">*</span></label>
+                    <span class="label label-danger"
+                        ng-show="inputForm.name.$error.required">Required!</span>
+                    <input id="client_id" type="text" name="client_id" ng-model="input.client_id" class="form-control"
+                           ng-required="true"/>
+                </div>
+                
+                <div class="form-group">
+                    <label for="client_name">Nama Pengguna</label>
+                    <input id="client_name" type="text" name="client_name" ng-model="input.client_name" class="form-control"/>
+                </div>
+                
+                <div class="form-group">
+                    <label for="client_addr">Alamat</label>
+                    <input id="client_addr" type="text" name="client_addr" ng-model="input.client_addr" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Kota</label>
+                    <select id="city" ng-model="input.city" name="city" ng-options="city for city in cities"
+                            class="form-control">
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Service</label>
+                    <select id="service" ng-model="input.service" name="service" ng-options="service for service in services"
+                            class="form-control">
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sub_service">Sub Service</label>
+                    <select id="sub_service" ng-model="input.sub_service" name="sub_service" ng-options="sub_service for sub_service in sub_services"
+                            class="form-control">
+                    </select>
+                </div>
+
+                 <div class="form-group">
+                    <label for="bhp">BHP (Rp.)</label>
+                    <input id="bhp" type="text" name="bhp" ng-model="input.bhp" class="form-control"/>
+                </div>
+
+                <div class="form-group" ng-controller="DatepickerCtrl">
+                    <label for="app_date">Application Date</label>
+                    <p class="input-group">
+                        <input id="app_date" type="text" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="input.app_date" is-open="opened"
+                               datepicker-options="dateOptions"
+                               close-text="Close"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" ng-click="open($event)"><i
+                                class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                    </p>
+                </div>
+				<div class="form-group">
+                    <label for="email"> Email </label>
+                    <input id="email" type="text" name="email" ng-model="input.email_addr" class="form-control"/>
+                </div>
+               
+
+                <button ng-click="inputPengguna(inputForm)" class="btn btn-primary"
+                        ng-disabled="!isValidConference(inputForm) || loading">Input Data
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

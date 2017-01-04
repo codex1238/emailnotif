@@ -1,0 +1,102 @@
+<div ng-controller="UpdateCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="messages" class="alert alert-{{alertStatus}}" ng-show="messages">
+                <span ng-bind="messages"></span>
+                <i class="dismiss-messages pull-right glyphicon glyphicon-remove" ng-click="messages = ''"
+                   ng-show="messages"></i>
+            </div>
+            <img class="spinner" src="/img/ajax-loader.gif" ng-show="loading"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8" >
+            <h3>Update Data Pengguna Frek. Radio</h3>
+            <form name="updateForm" novalidate role="form" ng-submit="init(updateForm)">
+                 <div class="form-group">
+                    <label for="client_id">ID Pengguna <span class="required">*</span></label>                    
+                     <input id="client_id" type="text"  name="client_id" ng-model="update.client_id" ng-change="init(updateForm)" class="form-control" ng-required="true" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0}" />
+                  
+                </div>
+                
+                <div class="form-group">
+                    <label for="client_name">Nama Pengguna</label>
+                     <span class="label label-warning"
+                          ng-show="update.client_name!= initialUpdate.client_name "> Changed</span>
+                    <input id="client_name" type="text" name="client_name" ng-model="update.client_name" class="form-control"/>
+                </div>
+                
+                <div class="form-group">
+                    <label for="client_addr">Alamat</label>
+                    <span class="label label-warning"
+                          ng-show="update.client_addr!= initialUpdate.client_addr "> Changed</span>
+                    <input id="client_addr" type="text" name="client_addr" ng-model="update.client_addr" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Kota</label>
+                    <span class="label label-warning"
+                          ng-show="update.city!= initialUpdate.city "> Changed</span>
+                    <select id="city" ng-model="update.city" name="city" ng-options="city for city in cities"
+                            class="form-control">
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Service</label>
+                    <span class="label label-warning"
+                          ng-show="update.service!= initialUpdate.service "> Changed</span>
+                    <select id="service" ng-model="update.service" name="service" ng-options="service for service in services"
+                            class="form-control">
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sub_service">Sub Service</label>
+                    <span class="label label-warning"
+                          ng-show="update.sub_service!= initialUpdate.sub_service "> Changed</span>
+                    <select id="sub_service" ng-model="update.sub_service" name="sub_service" ng-options="sub_service for sub_service in sub_services"
+                            class="form-control">
+                    </select>
+                </div>
+
+                 <div class="form-group">
+                    <label for="bhp">BHP (Rp.)</label>
+                    <span class="label label-warning"
+                          ng-show="update.bhp!= initialUpdate.bhp "> Changed</span>
+                    <input id="bhp" type="text" name="bhp" ng-model="update.bhp" class="form-control"/>
+                </div>
+
+                <div class="form-group" ng-controller="DatepickerCtrl">
+                    <label for="app_date">Application Date</label>
+                    <span class="label label-warning"
+                          ng-show="update.app_date!= initialUpdate.app_date"> Changed</span>
+                    <p class="input-group">
+                        <input id="app_date" type="text" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="update.app_date" is-open="opened"
+                               datepicker-options="dateOptions"
+                               close-text="Close"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" ng-click="open($event)"><i
+                                class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                    </p>
+                </div>
+                
+				<div class="form-group">
+                    <label for="email"> Email </label>
+                    <span class="label label-warning"
+                          ng-show="update.email_addr!= initialUpdate.email_addr"> Changed</span>
+                    <input id="email" type="text" name="email" ng-model="update.email_addr" class="form-control"/>
+                </div>             
+                
+                
+
+                <button ng-click="saveUpdate(updateForm)" class="btn btn-primary"
+                        ng-disabled="loading">Update data
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

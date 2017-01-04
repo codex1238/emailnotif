@@ -1,0 +1,4 @@
+cron:
+- description: Trial send Email Every 10 minutes
+  url: /crons/set_task
+  schedule: every 2 hours
